@@ -48,6 +48,32 @@ npm run build
 
 Vite writes the finished HTML, CSS, JavaScript, and static files into `dist/`.
 
+## Cloudflare Pages deployment
+
+Both Cloudflare Pages projects build from the same GitHub repository but use a
+different production branch. Keep these settings aligned so each branch updates
+only its intended production site:
+
+| Pages project | Git branch | Build command | Output directory | Root directory |
+|---|---|---|---|---|
+| `main` | `main` | `npm run build` | `dist` | `/` |
+| `production` | `prod` | `npm run build` | `dist` | `/` |
+
+Cloudflare installs the exact dependencies in `package-lock.json`, runs the
+type-checking Vite build, and publishes only `dist/`. The Node server in
+`server.mjs` is for local or conventional Node hosting and is not started by
+Cloudflare Pages.
+
+Files under `public/` are copied into `dist/` by Vite:
+
+- `public/_redirects` rewrites `/resume` and other browser routes to the React
+  HTML shell, allowing direct links and page refreshes to work.
+- `public/_headers` adds defensive browser headers and long-lived caching for
+  Vite's content-hashed assets.
+
+The Pages projects use build image v3, whose Node.js 22 runtime satisfies the
+project's Node.js 20.19-or-newer requirement.
+
 ## Preview or serve production
 
 Vite can preview the finished build on `http://127.0.0.1:4173`:
@@ -86,7 +112,8 @@ npm start
 Browser request
       │
       ├── development ──> Vite
-      └── production  ──> server.mjs ──> dist/index.html
+      ├── local Node ───> server.mjs ─┐
+      └── Cloudflare Pages ───────────┴──> dist/index.html
                                              │
                                              ▼
                                       src/main.tsx
@@ -122,6 +149,8 @@ Browser request
 ```text
 UnderscoreGavin.dev/
 ├── public/
+│   ├── _headers                # Cloudflare response and cache headers
+│   ├── _redirects              # Cloudflare single-page-app route fallback
 │   └── favicon.svg             # Browser-tab artwork
 ├── src/
 │   ├── components/

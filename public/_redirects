@@ -1,0 +1,3 @@
+# Cloudflare Pages copies this file into dist/ during the Vite build.
+# The 200 rewrite lets direct visits such as /resume load React's HTML shell.
+/* /index.html 200
