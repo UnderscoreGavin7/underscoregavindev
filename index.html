@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Main</title>
-    </head>
-    <body>
-        <h1>Hello World</h1>
-        <h2>Check Check 123</h2>
-    </body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- UTF-8 supports the résumé accent and other international characters. -->
+    <meta charset="UTF-8" />
+    <!-- Responsive layouts use the real device width instead of a desktop-sized canvas. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Search and link previews can summarize the site's purpose from this description. -->
+    <meta
+      name="description"
+      content="UnderscoreGavin.dev — systems programming, thoughtful interfaces, and learning by building."
+    />
+    <!-- Browser chrome starts with the dark background before React loads saved theme state. -->
+    <meta name="theme-color" content="#0a0d10" />
+    <!-- Vite copies public/ files to the root of the production bundle. -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>UnderscoreGavin.dev</title>
+  </head>
+  <body>
+    <!-- React takes ownership of this deliberately empty mount element. -->
+    <div id="root"></div>
+    <!-- type="module" enables modern imports; Vite rewrites this path during build. -->
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

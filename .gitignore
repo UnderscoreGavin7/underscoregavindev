@@ -1,0 +1,13 @@
+# Installed dependency trees are reproduced from package-lock.json.
+node_modules/
+
+# Vite creates these generated development and production directories.
+dist/
+.vite/
+
+# Machine-local settings and process diagnostics should not enter source control.
+*.local
+*.log
+
+# macOS Finder metadata is irrelevant if the project is shared across platforms.
+.DS_Store

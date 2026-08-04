@@ -1,0 +1,96 @@
+/*
+ * Bootstrap-to-project bridge.
+ *
+ * Import order in main.tsx is important:
+ *   1. Bootstrap supplies its selective Reboot and Utilities stylesheets.
+ *   2. styles.css preserves the original hand-written portfolio design.
+ *   3. This file connects Bootstrap's public --bs-* variables to that design.
+ *
+ * Never edit node_modules/bootstrap/dist/css/bootstrap.min.css directly. npm can
+ * replace it during installation; overrides belong in a source-controlled file.
+ */
+
+/*
+ * Bootstrap components and utilities read these variables. Referring to the
+ * original --bg/--text/--lime tokens makes them follow the existing theme toggle.
+ */
+:root {
+  --bs-body-bg: var(--bg);
+  --bs-body-color: var(--text);
+  --bs-body-font-family: "Manrope", system-ui, sans-serif;
+  --bs-body-font-size: 1rem;
+  --bs-body-line-height: 1.5;
+  --bs-primary: var(--lime);
+  --bs-primary-rgb: 126, 231, 135;
+  --bs-link-color: var(--lime);
+  --bs-link-hover-color: color-mix(in srgb, var(--lime) 78%, white);
+  --bs-border-color: var(--line);
+  --bs-border-radius: 0;
+  --bs-focus-ring-width: 3px;
+  --bs-focus-ring-opacity: 0.38;
+  --bs-focus-ring-color: color-mix(in srgb, var(--lime) 38%, transparent);
+}
+
+/* The light theme needs a darker RGB primary for Bootstrap opacity utilities. */
+:root[data-theme="light"] {
+  --bs-primary-rgb: 22, 131, 61;
+  --bs-link-hover-color: color-mix(in srgb, var(--lime) 78%, black);
+}
+
+/*
+ * Bootstrap's Reboot gives controls consistent inherited fonts. This explicit
+ * rule keeps the site's square visual language if a future Bootstrap component
+ * introduces its default rounded corners.
+ */
+.button,
+.theme-toggle {
+  border-radius: var(--bs-border-radius);
+}
+
+/* The circular theme control is an intentional exception to the square system. */
+.theme-toggle {
+  border-radius: 50%;
+}
+
+/*
+ * A visible focus ring helps keyboard users identify their current target.
+ * :focus-visible avoids showing the ring for ordinary pointer clicks.
+ */
+:where(a, button):focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 var(--bs-focus-ring-width) var(--bs-focus-ring-color);
+}
+
+/* Text selection uses the brand accent while maintaining readable contrast. */
+::selection {
+  background: var(--lime);
+  color: #071009;
+}
+
+/* Firefox uses these standardized properties for a quieter themed scrollbar. */
+* {
+  scrollbar-color: var(--line-strong) var(--bg);
+  scrollbar-width: thin;
+}
+
+/* Chromium/WebKit engines use pseudo-elements for equivalent scrollbar styling. */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Scrollbar tracks blend into the existing page background. */
+*::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+/* The thumb remains subtle until a user points at it. */
+*::-webkit-scrollbar-thumb {
+  border: 3px solid var(--bg);
+  background: var(--line-strong);
+}
+
+/* Hover feedback makes the draggable scrollbar region easier to discover. */
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--lime);
+}
