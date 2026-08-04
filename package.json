@@ -1,0 +1,29 @@
+{
+  "name": "underscore-gavin-dev",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A lightweight developer portfolio built with React, TypeScript, Node.js, and Vite.",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && vite build",
+    "preview": "vite preview",
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.0.5",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.0"
+  }
+}

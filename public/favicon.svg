@@ -1,0 +1,9 @@
+<!-- Compact "UG" mark shown in browser tabs and bookmarks. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Rounded tile follows the site's default dark surface. -->
+  <rect width="64" height="64" rx="14" fill="#0a0d10"/>
+  <!-- Lime underline repeats the accent used throughout the interface. -->
+  <path d="M13 43h38" stroke="#7ee787" stroke-width="6" stroke-linecap="round"/>
+  <!-- The open white curve suggests a minimal U/G monogram at favicon scale. -->
+  <path d="M20 16v18c0 6 4 9 12 9s12-3 12-9V16" fill="none" stroke="#f4f1e8" stroke-width="6" stroke-linecap="round"/>
+</svg>
